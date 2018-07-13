@@ -5,11 +5,15 @@ class Home extends AppController {
 
         $menu = array("home" => "home", "api" => "api", "crud" => "crud");
 
-        $this->getView("header", array("pagename"=>"home"));
+        $this->getView("components/header", array("pagename"=>"home"));
 
-        $this->getView("navigation", $menu);
+        $this->getView("components/navigation", $menu);
 
-        $this->getView("body");
+        $this->getView("components/body");
+
+        $this->getView("home");
+
+        $this->getView("components/footer");
     }
 }
 
