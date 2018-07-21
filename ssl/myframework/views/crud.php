@@ -1,17 +1,15 @@
-<?php
+<div class="row">
+    <div class="col-sm">
+        <h1>CRUD</h1>
+        <a href="/crud/addform">Add</a>
 
-echo "<div class='row'>";
-echo "<div class='col-sm'>";
-
-echo "<h1>CRUD</h1>";
-
-include_once 'components/carousel.php';
-include_once 'components/progressBar.php';
-include_once 'components/modal.php';
-include_once 'components/popover.php';
-
-
-echo "</div>";
-echo "</div>";
-
-?>
+        <?php
+            foreach($data["fruits"] as $fruit) {
+                 echo "<p>". $fruit['name'];
+                 echo " <a href='/crud/delete/" . $fruit['id'] . "'>Delete</a>";
+                 echo " <a href='/crud/update/" . $fruit['id'] . "'>Update</a>";
+                 echo "</p>";
+            }
+        ?>
+    </div>
+</div>

@@ -1,17 +1,11 @@
-<?php
-
-echo "<div class='row'>";
-echo "<div class='col-sm'>";
-
-echo "<h1>Home</h1>";
-
-include_once 'components/carousel.php';
-include_once 'components/progressBar.php';
-include_once 'components/modal.php';
-include_once 'components/popover.php';
-
-
-echo "</div>";
-echo "</div>";
-
-?>
+<div class="row">
+    <div class="col-sm">
+        <h1>Home</h1>
+        <?php
+            $this->getView("components/carousel");
+            $this->getView("components/progressBar");
+            $this->getView("components/modal");
+            $this->getView("components/popover");
+        ?>
+    </div>
+</div>

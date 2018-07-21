@@ -1,3 +1,7 @@
 ul li a {
   text-transform: uppercase;
 }
+
+.active {
+  color: yellow !important;
+}

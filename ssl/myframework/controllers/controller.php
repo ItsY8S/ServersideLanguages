@@ -2,7 +2,9 @@
 
 class Controller extends AppController {
 
-    public function __construct() {
+    public function __construct($parent) {
+
+        $this->parent = $parent;
 
         $menu = array("home" => "home", "api" => "api");
 

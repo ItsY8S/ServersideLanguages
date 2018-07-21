@@ -1,7 +1,15 @@
 <?php
 
+session_start();
 class AppController {
     public function __construct($urlPathParts, $config) {
+       
+       try{
+        $this->db = new PDO("mysql:dbname=". $config["dbname"].";",$config["dbuser"], $config["dbpass"]);
+       }catch(PDOException $e){
+        echo $e->getMessage();
+        }
+
         $this ->urlPathParts = $urlPathParts;
 
         if($urlPathParts[0]) {
@@ -12,6 +20,12 @@ class AppController {
             if(isset($urlPathParts[1])) {
                 $appcon->$urlPathParts[1]();
             }
+            else {
+                $methodVariable = array($appcon, 'index');
+                if(is_callable($methodVariable, false, $callable_name)) {
+                    $appcon->index($this);
+                }
+            }
         }
         else {
             include './controllers/'.$config["defaultController"].".php";
@@ -21,6 +35,12 @@ class AppController {
             if(isset($urlPathParts[1])) {
                 $appcon->config["defaultController"][1]();
             }
+            else {
+                $methodVariable = array($appcon, 'index');
+                if(is_callable($methodVariable, false, $callable_name)) {
+                    $appcon->index($this);
+                }
+            }
         }
     }
 
@@ -28,8 +48,10 @@ class AppController {
         require_once './views/'.$page.".php";
     }
 
-    public function getModel() {
-        
+    public function getModel($page) {
+        require_once './models/'.$page.".php";
+        $model = new $page($this);
+        return $model;
     }
 
 }

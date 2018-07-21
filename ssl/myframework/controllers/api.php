@@ -1,7 +1,9 @@
 <?php
 
 class API extends AppController {
-    public function __construct($urlPathParts) {
+    public function __construct($parent) {
+
+        $this->parent = $parent;
 
         $menu = array("home" => "home", "api" => "api", "crud" => "crud", "about" => "about");
 
